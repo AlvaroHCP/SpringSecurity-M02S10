@@ -1,0 +1,40 @@
+spring:
+  datasource:
+#    url: jdbc:postgresql://localhost:5432/farmaciadb
+#    username: postgres
+#    password: 2424
+    url: jdbc:h2:mem:usuariosdb
+    username: admin
+    password: admin
+    driverClassName: org.h2.Driver
+
+  jpa:
+    defer-datasource-initialization: true
+#    show-sql: true
+#    properties:
+#      hibernate:
+#        format_sql: true
+    hibernate:
+      ddl-auto: update
+
+  sql:
+    init:
+      mode: always
+
+  jackson:
+    default-property-inclusion: NON_NULL
+
+server:
+#  port: 8080
+  port: 7666
+
+# swagger-path
+springdoc:
+  swagger-ui:
+    path: /docs.html
+
+secret:
+  key: ${JWT_SECRET:1234567890qwertyuiop}  # example of environment variable or default value if not found
+
+#  servlet:
+#    context-path: /api/v1:
