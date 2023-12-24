@@ -22,19 +22,19 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false)
-    private String nome;
+    private String username;
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
-    private String senha;
+    private String password;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
 
     public Usuario(String nome, String email, String senha, Role role) {
-        this.nome = nome;
+        this.username = nome;
         this.email = email;
-        this.senha = senha;
+        this.password = senha;
         this.role = role;
     }
 
@@ -50,7 +50,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getPassword() {
-        return this.senha;
+        return this.password;
     }
 
     @Override

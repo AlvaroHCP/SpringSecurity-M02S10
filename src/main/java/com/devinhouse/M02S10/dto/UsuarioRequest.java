@@ -7,13 +7,13 @@ import lombok.Data;
 public class UsuarioRequest {
 
     @NotEmpty(message = "{required.field}")
-    private String nome;
+    private String username;
 
     @NotEmpty(message = "{required.field}")
     private String email;
 
     @NotEmpty(message = "{required.field}")
-    private String senha;
+    private String password;
 
     @NotEmpty(message = "{required.field}")
     private String role;

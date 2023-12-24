@@ -25,8 +25,8 @@ public class UsuarioService implements UserDetailsService {
     public Usuario inserir(Usuario usuario) {
         if (repo.existsByEmail(usuario.getEmail()))
             throw new AlreadyExistsException("Usuario", usuario.getEmail());
-        String senhaCriptografada = passwordEncoder.encode(usuario.getSenha());
-        usuario.setSenha(senhaCriptografada);
+        String senhaCriptografada = passwordEncoder.encode(usuario.getPassword());
+        usuario.setPassword(senhaCriptografada);
         return repo.save(usuario);
     }
 
