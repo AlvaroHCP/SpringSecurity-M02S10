@@ -36,7 +36,7 @@ public class TokenService {
 
     public String gerarToken(Usuario user) {
         Algorithm algorithm = Algorithm.HMAC256(secret.getBytes());
-        Instant expiration = gerarExpiracao(10);  // expires in 10 min
+        Instant expiration = gerarExpiracao(30);  // expires in 10 min
         String token = JWT.create()
                 .withSubject(user.getEmail())
                 .withExpiresAt(expiration)

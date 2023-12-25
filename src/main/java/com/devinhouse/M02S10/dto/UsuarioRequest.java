@@ -7,7 +7,7 @@ import lombok.Data;
 public class UsuarioRequest {
 
     @NotEmpty(message = "{required.field}")
-    private String username;
+    private String name;
 
     @NotEmpty(message = "{required.field}")
     private String email;

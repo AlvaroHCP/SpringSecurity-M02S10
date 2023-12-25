@@ -1,6 +1,7 @@
 package com.devinhouse.M02S10.service;
 
 import com.devinhouse.M02S10.exception.AlreadyExistsException;
+import com.devinhouse.M02S10.exception.NotFoundException;
 import com.devinhouse.M02S10.model.Usuario;
 import com.devinhouse.M02S10.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,33 @@ public class UsuarioService implements UserDetailsService {
         String senhaCriptografada = passwordEncoder.encode(usuario.getPassword());
         usuario.setPassword(senhaCriptografada);
         return repo.save(usuario);
+    }
+
+    public Usuario atualizar(Usuario usuario) {
+        if (repo.existsByEmail(usuario.getEmail())) {
+            Usuario antigo = repo.findByEmail(usuario.getEmail()).get();
+            String senhaCriptografada = passwordEncoder.encode(usuario.getPassword());
+            usuario.setPassword(senhaCriptografada);
+
+            antigo.setName(usuario.getName());
+            antigo.setEmail(usuario.getEmail());
+            antigo.setPassword(usuario.getPassword());
+            antigo.setRole(usuario.getRole());
+
+            return repo.save(antigo);
+        }
+
+        throw new AlreadyExistsException("Usuario", usuario.getEmail());
+    }
+
+    public void excluir(Usuario usuario) {
+        if (repo.existsByEmail(usuario.getEmail())) {
+            Usuario antigo = repo.findByEmail(usuario.getEmail()).get();
+            repo.delete(antigo);
+            return;
+        }
+
+        throw new NotFoundException("Usuario", usuario.getEmail());
     }
 
     public List<Usuario> consultar() {

@@ -12,6 +12,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +48,24 @@ public class UsuarioController {
          usuario = usuarioService.inserir(usuario);
         var resp = mapper.map(usuario, UsuarioResponse.class);
         return ResponseEntity.created(URI.create(usuario.getId().toString())).body(resp);
+    }
+
+    @PutMapping
+    @RolesAllowed("ADMIN")
+    public ResponseEntity<UsuarioResponse> atualizar(@RequestBody @Valid UsuarioRequest request) {
+        var usuario = mapper.map(request, Usuario.class);
+        usuario = usuarioService.atualizar(usuario);
+        var resp = mapper.map(usuario, UsuarioResponse.class);
+        return ResponseEntity.created(URI.create(usuario.getId().toString())).body(resp);
+    }
+
+    @DeleteMapping
+    @RolesAllowed("ADMIN")
+    public ResponseEntity<HttpStatus> excluir(@RequestBody @Valid UsuarioRequest request) {
+        var usuario = mapper.map(request, Usuario.class);
+        usuarioService.excluir(usuario);
+
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/autenticar")

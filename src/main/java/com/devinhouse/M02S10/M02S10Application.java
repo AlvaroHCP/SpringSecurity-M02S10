@@ -61,6 +61,7 @@ public class M02S10Application {
 	@Bean
 	CommandLineRunner run(UsuarioService usuarioService) {
 		return args -> {
+
 			usuarioService.inserir(new Usuario("Admin Geral","admin@geral.com",
 					"admin123", Role.ADMIN));
 		};

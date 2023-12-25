@@ -22,7 +22,7 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false)
-    private String username;
+    private String name;
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
@@ -31,10 +31,10 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private Role role;
 
-    public Usuario(String nome, String email, String senha, Role role) {
-        this.username = nome;
+    public Usuario(String username, String email, String password, Role role) {
+        this.name = username;
         this.email = email;
-        this.password = senha;
+        this.password = password;
         this.role = role;
     }
 

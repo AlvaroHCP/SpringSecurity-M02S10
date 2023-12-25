@@ -37,10 +37,9 @@ public class SecurityConfiguration {
         http.csrf(csrf -> csrf.disable())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Do not create session
                 .authorizeHttpRequests(auth -> auth
-//                    .requestMatchers("/", "/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll() // white list (swagger and root entry point)
-                                .requestMatchers(HttpMethod.GET, "/usuarios").permitAll()  // white list: fetch users list
+                    .requestMatchers("/", "/swagger-ui/**", "/api-docs", "/api-docs/**").permitAll() // white list (swagger and root entry point)
+                                .requestMatchers(HttpMethod.GET, "/noticias").permitAll()  // white list: fetch users list
                                 .requestMatchers(HttpMethod.POST, "/usuarios/autenticar").permitAll() // white list: login endpoint
-                                .requestMatchers(HttpMethod.GET, "/farmacias").permitAll()
                                 .anyRequest().authenticated()  // all others endpoints should be authenticated
                 )
                 .authenticationProvider(authenticationProvider())
