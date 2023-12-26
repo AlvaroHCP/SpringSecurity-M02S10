@@ -39,12 +39,12 @@ public class RestApiExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     };
 
-//    @ExceptionHandler(AuthenticationFailException.class)
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    public ResponseEntity<Object> handleApiAuthenticationFailException(AuthenticationFailException exception){
-//        ApiErrorResponse error = new ApiErrorResponse(exception.getClass().getSimpleName(), exception.toString());
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
-//    };
+    @ExceptionHandler(AuthenticationFailException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity<Object> handleApiAuthenticationFailException(AuthenticationFailException exception){
+        ApiErrorResponse error = new ApiErrorResponse(exception.getClass().getSimpleName(), exception.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    };
 
     @Override
     @ResponseStatus(HttpStatus.BAD_REQUEST)

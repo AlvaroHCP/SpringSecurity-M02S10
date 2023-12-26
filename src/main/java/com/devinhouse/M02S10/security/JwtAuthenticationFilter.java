@@ -1,6 +1,7 @@
 package com.devinhouse.M02S10.security;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.devinhouse.M02S10.exception.AuthenticationFailException;
 import com.devinhouse.M02S10.service.security.TokenService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
